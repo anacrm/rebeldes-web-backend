@@ -4,11 +4,19 @@ public class Report {
     private float traitors;
     private float rebels;
     private int lostPoints;
+    private float averageWeapons;
+    private float averageAmmo;
+    private float averageWater;
+    private float averageFood;
 
-    public Report(float traitors, float rebels, int lostPoints){
+    public Report(float traitors, float rebels, int lostPoints, float averageWeapons, float averageAmmo, float averageWater, float averageFood){
         this.traitors=traitors;
         this.rebels=rebels;
         this.lostPoints = lostPoints;
+        this.averageWeapons = averageWeapons;
+        this.averageAmmo = averageAmmo;
+        this.averageWater = averageWater;
+        this.averageFood = averageFood;
     }
 
     public float getTraitors() {
@@ -32,6 +40,37 @@ public class Report {
 
     public void setLostPoints(int lostPoints) {
         this.lostPoints = lostPoints;
+    }
+
+    public float getAverageWeapons() {
+        return averageWeapons;
+    }
+
+    public void setAverageWeapons(float averageWeapons) {
+        this.averageWeapons = averageWeapons;
+    }
+    public float getAverageAmmo() {
+        return averageAmmo;
+    }
+
+    public void setAverageAmmo(float averageAmmo) {
+        this.averageAmmo = averageAmmo;
+    }
+
+    public float getAverageWater() {
+        return averageWater;
+    }
+
+    public void setAverageWater(float averageWater) {
+        this.averageWater = averageWater;
+    }
+
+    public float getAverageFood() {
+        return averageFood;
+    }
+
+    public void setAverageFood(float averageFood) {
+        this.averageFood = averageFood;
     }
 
 }
