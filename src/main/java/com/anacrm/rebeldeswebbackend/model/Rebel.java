@@ -17,16 +17,16 @@ public class Rebel {
     private Location location;
     private boolean traitor = false;
     private int reportCount = 0;
-    private ArrayList<String> inventory = new ArrayList<>();
+    private Inventory inventory;
 
-    public Rebel(String name,int age, String gender, Location location){
+    public Rebel(String name,int age, String gender, Location location,Inventory inventory){
         this.name = name;
         this.age = age;
         this.gender = gender;
         this.location= location;
+        this.inventory=inventory;
         idCount++;
         id = idCount;
-
     }
 
     public String getName() {
@@ -76,6 +76,7 @@ public class Rebel {
     public void setReportCount(int reportCount) {
         this.reportCount = reportCount;
     }
+
     public int getId() {
         return id;
     }
@@ -84,11 +85,11 @@ public class Rebel {
         this.id = id;
     }
 
-    public ArrayList<String> getInventory() {
+    public Inventory getInventory() {
         return inventory;
     }
 
-    public void setInventory(ArrayList<String> inventory) {
+    public void setInventory(Inventory inventory) {
         this.inventory = inventory;
     }
 
