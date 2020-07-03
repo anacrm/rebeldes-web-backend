@@ -23,7 +23,7 @@ gradle build
 
 Para iniciar a aplicação:
 ```
-java -jar ./build/libs/rebeldes-web-backend-1.0
+java -jar ./build/libs/rebeldes-web-backend-1.0.jar
 ```
 ## Endpoints
 
