@@ -29,7 +29,7 @@ java -jar ./build/libs/rebeldes-web-backend-1.0
 
 Coleção Postman: https://www.getpostman.com/collections/c3f2c04af8a631c4eb9b
 
-##### POST /api/rebel
+#### POST /api/rebel
 Cria um rebelde
 ```
 {
@@ -50,7 +50,7 @@ Cria um rebelde
 }
 ```
 
-##### PUT /api/rebel/{idRebelde}/location
+#### PUT /api/rebel/{idRebelde}/location
 Atualiza a localização do Rebelde com id == idRebelde
 ```
 {
@@ -60,11 +60,11 @@ Atualiza a localização do Rebelde com id == idRebelde
 }
 ```
 
-##### PUT /api/rebel/{idRebelde}/report
+#### PUT /api/rebel/{idRebelde}/report
 Denuncia como traidor o Rebelde com id == idRebelde
 
 
-##### PUT /api/negotiate
+#### PUT /api/negotiate
 Realiza troca de itens entre dois Rebeldes
 
 ```
@@ -86,11 +86,11 @@ Realiza troca de itens entre dois Rebeldes
 }
 ```
 
-##### GET /api/completeReport
+#### GET /api/completeReport
 
 Retorna um relatório completo com informações sobre a resistência
 
-##### GET /api/completeReport
+#### GET /api/completeReport
 
 Retorna os Rebeldes (traidores ou não) cadastrados no sistema
 
