@@ -18,10 +18,6 @@ public class Negotiation {
         return buyerId;
     }
 
-    public void setBuyerId(int buyerId) {
-        this.buyerId = buyerId;
-    }
-
     public Inventory getBuyerOffer() {
         return buyerOffer;
     }
@@ -32,10 +28,6 @@ public class Negotiation {
 
     public int getSellerId() {
         return sellerId;
-    }
-
-    public void setSellerId(int sellerId) {
-        this.sellerId = sellerId;
     }
 
     public Inventory getSellerOffer() {

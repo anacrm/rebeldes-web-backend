@@ -4,6 +4,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class Inventory {
 
+    public static final int VALUE_WEAPON = 4;
+    public static final int VALUE_AMMO = 3;
+    public static final int VALUE_WATER = 2;
+    public static final int VALUE_FOOD = 1;
     private int weapons;
     private int ammo;
     private int water;
@@ -21,37 +25,22 @@ public class Inventory {
         return weapons;
     }
 
-    public void setWeapons(int weapons) {
-        this.weapons = weapons;
-    }
-
     public int getAmmo() {
         return ammo;
-    }
-
-    public void setAmmo(int ammo) {
-        this.ammo = ammo;
     }
 
     public int getWater() {
         return water;
     }
 
-    public void setWater(int water) {
-        this.water = water;
-    }
-
     public int getFood() {
         return food;
     }
 
-    public void setFood(int food) {
-        this.food = food;
-    }
 
     @JsonIgnore
     public int getPoints(){
-        int total = (4*this.weapons + 3*this.ammo + 2*this.water + this.food);
+        int total = (VALUE_WEAPON *this.weapons + VALUE_AMMO*this.ammo + VALUE_WATER *this.water + VALUE_FOOD *this.food);
         return total;
     }
 

@@ -156,6 +156,7 @@ class ProjetoRebeldesPhoebusApplicationTests {
 		assertThat(report.getAverageAmmo()).isEqualTo(2f);
 		assertThat(report.getAverageWater()).isEqualTo(4f);
 		assertThat(report.getAverageFood()).isEqualTo(6f);
+		assertThat(report.getLostPoints()).isEqualTo(16);
 	}
 
 	@Test

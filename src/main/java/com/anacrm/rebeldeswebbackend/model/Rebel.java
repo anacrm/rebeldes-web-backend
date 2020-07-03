@@ -1,9 +1,8 @@
 package com.anacrm.rebeldeswebbackend.model;
 
-import java.util.ArrayList;
-
 public class Rebel {
 
+    public static final int MAX_REPORTS = 3;
     /**
      * Como nao usarei banco de dados decidi criar uma logica simples
      * para gerar ids unicos.
@@ -61,41 +60,23 @@ public class Rebel {
         this.location = location;
     }
 
-    public boolean isTraitor() {
-        return traitor;
-    }
-
-    public void setTraitor(boolean traitor) {
-        this.traitor = traitor;
-    }
+    public boolean isTraitor() { return traitor; }
 
     public int getReportCount() {
         return reportCount;
-    }
-
-    public void setReportCount(int reportCount) {
-        this.reportCount = reportCount;
     }
 
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public Inventory getInventory() {
         return inventory;
     }
 
-    public void setInventory(Inventory inventory) {
-        this.inventory = inventory;
-    }
-
     public void addReport() {
         this.reportCount++;
-        if (this.reportCount >= 3){
+        if (this.reportCount >= MAX_REPORTS){
             this.traitor = true;
         }
     }
