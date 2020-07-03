@@ -4,7 +4,9 @@ import com.anacrm.rebeldeswebbackend.model.Location;
 import com.anacrm.rebeldeswebbackend.model.Negotiation;
 import com.anacrm.rebeldeswebbackend.model.Rebel;
 import com.anacrm.rebeldeswebbackend.model.Report;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 
@@ -19,7 +21,6 @@ public class RebelController {
         return rebels;
     }
 
-
     @PostMapping("/rebel")
     public Rebel createRebel(@RequestBody Rebel rebel) {
 
@@ -32,6 +33,8 @@ public class RebelController {
 
         Rebel rebel =  this.getRebel(id);
 
+        checkRebelNotNull(rebel);
+
         rebel.setLocation(location);
 
         return rebel;
@@ -41,6 +44,8 @@ public class RebelController {
     public Rebel reportRebel (@PathVariable("id") int id) {
 
         Rebel rebel = this.getRebel(id);
+
+        checkRebelNotNull(rebel);
         rebel.addReport();
         return rebel;
     }
@@ -51,13 +56,22 @@ public class RebelController {
         Rebel buyer = this.getRebel(negotiation.getBuyerId());
         Rebel seller = this.getRebel(negotiation.getSellerId());
 
-        if(negotiation.getBuyerOffer().getPoints() == negotiation.getSellerOffer().getPoints()
-        && !buyer.isTraitor() && !seller.isTraitor()){
-            buyer.getInventory().subtract(negotiation.getBuyerOffer());
-            buyer.getInventory().add(negotiation.getSellerOffer());
-            seller.getInventory().subtract(negotiation.getSellerOffer());
-            seller.getInventory().add(negotiation.getBuyerOffer());
+        checkRebelNotNull(buyer);
+        checkRebelNotNull(seller);
+
+        if (negotiation.getBuyerOffer().getPoints() != negotiation.getSellerOffer().getPoints()){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Can't negotiate offers with different points");
         }
+
+        if (buyer.isTraitor() || seller.isTraitor()){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Can't negotiate offers with traitors");
+        }
+
+        buyer.getInventory().subtract(negotiation.getBuyerOffer());
+        buyer.getInventory().add(negotiation.getSellerOffer());
+        seller.getInventory().subtract(negotiation.getSellerOffer());
+        seller.getInventory().add(negotiation.getBuyerOffer());
+
         return buyer;
     }
 
@@ -94,8 +108,15 @@ public class RebelController {
 
 
 
-        return new Report(percentTraitors,(1-percentTraitors),lostPoints,averageWeapons,averageAmmo,averageWater,averageFood);
+        return new Report(percentTraitors,(1-percentTraitors),lostPoints,averageWeapons,averageAmmo
+                ,averageWater,averageFood);
 
+    }
+
+    private void checkRebelNotNull(Rebel rebel) {
+        if (rebel == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Rebel not found");
+        }
     }
 
     public Rebel getRebel (int id) {
