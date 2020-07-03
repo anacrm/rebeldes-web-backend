@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class Inventory {
 
+    //constantes para representar os valores dos itens
     public static final int VALUE_WEAPON = 4;
     public static final int VALUE_AMMO = 3;
     public static final int VALUE_WATER = 2;
@@ -38,7 +39,7 @@ public class Inventory {
     }
 
 
-    @JsonIgnore
+    @JsonIgnore // ignora ao criar Json para resposta
     public int getPoints(){
         int total = (VALUE_WEAPON *this.weapons + VALUE_AMMO*this.ammo + VALUE_WATER *this.water + VALUE_FOOD *this.food);
         return total;

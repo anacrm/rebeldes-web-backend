@@ -1,13 +1,13 @@
 package com.anacrm.rebeldeswebbackend.model;
 
 public class Report {
-    private float traitors;
-    private float rebels;
-    private int lostPoints;
-    private float averageWeapons;
-    private float averageAmmo;
-    private float averageWater;
-    private float averageFood;
+    private final float traitors;
+    private final float rebels;
+    private final int lostPoints;
+    private final float averageWeapons;
+    private final float averageAmmo;
+    private final float averageWater;
+    private final float averageFood;
 
     public Report(float traitors, float rebels, int lostPoints, float averageWeapons, float averageAmmo, float averageWater, float averageFood){
         this.traitors=traitors;

@@ -11,16 +11,28 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.ArrayList;
 
 @RestController // informa spring que a class é um controller
-@RequestMapping("/api")
+@RequestMapping("/api")  //add prefixo api em todos endpoints da classe
 public class RebelController {
 
+    /**
+     * Usado para armazeras os rebeldes.Idealmente usariamos um banco de dados para tarefa.
+     */
     private ArrayList<Rebel> rebels = new ArrayList<>();
 
+    /**
+     * Retorna um ArrayList com todos os rebeldes criados.
+     * @return
+     */
     @GetMapping("/all")
     public ArrayList<Rebel> all(){
         return rebels;
     }
 
+    /**
+     * Adiciona um rebelde no sistema
+     * @param rebel O rebelde a ser adicionado no sistema
+     * @return O rebelde adicionado com Id.
+     */
     @PostMapping("/rebel")
     public Rebel createRebel(@RequestBody Rebel rebel) {
 
@@ -28,6 +40,12 @@ public class RebelController {
         return rebel;
     }
 
+    /**
+     * Atualiza a localizacao do Rebelde.
+     * @param id Id do Rebelde a ter a localizacao atualizada
+     * @param location Nova localizacao
+     * @return O rebelde com a localizacao atualizada
+     */
     @PutMapping("/rebel/{id}/location")
     public Rebel updateLocation(@PathVariable("id") int id, @RequestBody Location location) {
 
@@ -40,6 +58,11 @@ public class RebelController {
         return rebel;
     }
 
+    /**
+     * Denuncia um Rebelde como traidor
+     * @param id Id do Rebelde a ser denunciado
+     * @return Rebelde denunciado.
+     */
     @PutMapping("/rebel/{id}/report")
     public Rebel reportRebel (@PathVariable("id") int id) {
 
@@ -50,6 +73,11 @@ public class RebelController {
         return rebel;
     }
 
+    /**
+     * Realiza a troca de itens entre dois Rebeldes
+     * @param negotiation Descricao da troca
+     * @return O rebelde comprador
+     */
     @PutMapping("/negotiate")
     public Rebel negotiate(@RequestBody Negotiation negotiation){
 
@@ -75,6 +103,10 @@ public class RebelController {
         return buyer;
     }
 
+    /**
+     * Gera e retorna um relatorio completo com informacoes sobre o sistema
+     * @return Relatorio gerado
+     */
     @GetMapping("/completeReport")
     public Report completeReport() {
 
@@ -113,12 +145,21 @@ public class RebelController {
 
     }
 
+    /**
+     * Verifica se o rebelde e nulo. Lanca 404 caso for nulo.
+     * @param rebel
+     */
     private void checkRebelNotNull(Rebel rebel) {
         if (rebel == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Rebel not found");
         }
     }
 
+    /**
+     * Procura pelo rebelde com Id especificado
+     * @param id
+     * @return O Rebelde com o id especificado caso ele exista, null caso contrario.
+     */
     public Rebel getRebel (int id) {
 
         for (Rebel rebel:this.rebels) {

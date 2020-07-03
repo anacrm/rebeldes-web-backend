@@ -2,21 +2,23 @@ package com.anacrm.rebeldeswebbackend.model;
 
 public class Rebel {
 
-    public static final int MAX_REPORTS = 3;
+    //constante para representar o numero minimo de denuncias para ser considerado traidor
+    public static final int REPORTS_TO_TRAITOR = 3;
     /**
      * Como nao usarei banco de dados decidi criar uma logica simples
-     * para gerar ids unicos.
+     * para gerar ids unicos.A geracao de ids seria tratada provavelmente pelo sistema
+     * de banco de dados
      */
     static private int idCount = 0;
 
-    private int id;
+    private final int id;
     private String name;
     private int age;
-    private String gender; // tentar usar enum
+    private String gender; //  talvez usar enum seria uma melhor opcao
     private Location location;
     private boolean traitor = false;
     private int reportCount = 0;
-    private Inventory inventory;
+    private final Inventory inventory;
 
     public Rebel(String name,int age, String gender, Location location,Inventory inventory){
         this.name = name;
@@ -76,7 +78,7 @@ public class Rebel {
 
     public void addReport() {
         this.reportCount++;
-        if (this.reportCount >= MAX_REPORTS){
+        if (this.reportCount >= REPORTS_TO_TRAITOR){
             this.traitor = true;
         }
     }
